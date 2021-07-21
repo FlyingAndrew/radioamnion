@@ -8,4 +8,6 @@ if __name__ == "__main__":
     audio_led = radioamnion.Audio2LED(f_name)
     print(f'Resulting fps: {audio_led.fps:.2f} frames/s')
 
-    audio_led.save_to_csv()
+    csv_file = audio_led.save_to_csv()
+
+    print(f'Saved to: {csv_file}')
