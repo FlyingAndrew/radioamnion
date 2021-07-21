@@ -1,0 +1,5 @@
+build/
+src/RADIOAMNION.egg-info
+dist/
+envs/
+venv/
