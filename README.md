@@ -43,3 +43,9 @@ pip3 install -U --user -e .
 ## TODO List:
 * [ ] add examples
 * [ ] README
+
+# Crontab
+For c&p to:
+```
+37 11 24 7 * /home/odroid/mctl/mctl/mctl_client.py module art START /home/odroid/art/---.csv 2>&1 >> /home/odroid/logs/cron_art.log
+```
