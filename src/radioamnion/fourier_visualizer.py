@@ -68,14 +68,16 @@ class FourierSpaceVisualizer:
 
         return fig, ax, figure_dict
 
-    def animate_3d(self, led_converter, overwrite=False, log=True, t_steps=23, f_steps=30, cmap='viridis', n_trans=0,
+    def animate_3d(self, led_converter, file_name='fft', overwrite=False, log=True, t_steps=23, f_steps=30,
+                   cmap='viridis', n_trans=0,
                    facecolor='white', steps=36, fps=30):
         if log:
             str_scale = 'log'
         else:
             str_scale = 'lin'
 
-        file_name = f'fft_t{t_steps}_f{f_steps}_{str_scale}_{cmap}_ntrans_{n_trans}_{facecolor}_s{steps}_fps{fps}.mp4'
+        file_name = f'{file_name}_t{t_steps}_f{f_steps}_{str_scale}_{cmap}_' \
+                    f'ntrans_{n_trans}_{facecolor}_s{steps}_fps{fps}.mp4'
         if os.path.exists(file_name) and not overwrite:
             print(f"File exists: {file_name}")
             # return

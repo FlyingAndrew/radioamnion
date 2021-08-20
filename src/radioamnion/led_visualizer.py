@@ -5,7 +5,7 @@ import matplotlib
 import matplotlib.pyplot as plt
 
 import moviepy.editor as mpe
-from tqdm import tqdm
+import tqdm
 
 
 class LEDVisualizer:
