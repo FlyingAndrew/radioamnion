@@ -23,18 +23,22 @@ class FourierSpaceVisualizer:
 
         return fig, ax, figure_dict
 
-    def plot_3d(self, led_converter, log=True, t_steps=23, f_steps=30, cmap='viridis', facecolor='white', n_trans=0):
+    @staticmethod
+    def create_2d_arrays(led_converter, log=True, t_steps=23, f_steps=30):
         ff, tt = np.meshgrid(led_converter.frequency_arr[::f_steps],
                              np.average(led_converter.time_chunked, axis=-1)[::t_steps])
         zz = np.copy(led_converter.f_data[0, ::t_steps, ::f_steps])
         if log:
             zz = np.log10(zz)
 
+        # norm for cmap, log for lin and lin for log
+        zz = np.abs(zz)
+
+        return ff, tt, zz
+
+    def plot_3d(self, led_converter, log=True, t_steps=23, f_steps=30, cmap='viridis', facecolor='white', n_trans=0):
         fig, ax, figure_dict = self.set_up_3d_fig(facecolor)
         self.fig, self.ax, self.figure_dict = fig, ax, figure_dict
-
-        # norm for cmap, log for lin and lin for log
-        ZZ = np.abs(zz.flatten())
 
         cmap_cmap = matplotlib.cm.get_cmap(cmap)
         my_cmap = np.array(cmap_cmap(np.arange(cmap_cmap.N)))
@@ -44,14 +48,16 @@ class FourierSpaceVisualizer:
         # Create new colormap
         my_cmap = ListedColormap(my_cmap)
 
+        ff, tt, zz = self.create_2d_arrays(led_converter=led_converter, log=log, t_steps=t_steps, f_steps=f_steps)
+
         if log:
             norm = None
         else:
-            norm = colors.LogNorm(vmin=ZZ.min() * 1000, vmax=ZZ.max() * 1.)
+            norm = colors.LogNorm(vmin=zz.min() * 1000, vmax=zz.max() * 1.)
 
         ax.plot_trisurf(ff.flatten() / 1e3,
                         tt.flatten(),
-                        ZZ,
+                        zz.flatten(),
                         shade=True,
                         linewidth=0.0001,
                         antialiased=True,
