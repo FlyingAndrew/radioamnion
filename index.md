@@ -1,6 +1,6 @@
 ## Radioamnion
 
-Radioamnion is an art project included in a scientific detector call STRAWb.
+Radioamnion is an art project included in a scientific detector called STRAWb.
 
 ## Transmissions
 ### pacific2
