@@ -1,7 +1,7 @@
 ## radioamnion
-Webpage: http://radioamnion.net
-GitHub-Page: https://flyingandrew.github.io/radioamnion/
-GitHub: https://github.com/FlyingAndrew/radioamnion
+- Webpage: http://radioamnion.net
+- GitHub-Page: https://flyingandrew.github.io/radioamnion/
+- GitHub: https://github.com/FlyingAndrew/radioamnion
 
 Radioamnion is a python module which simplifies and streamlines for the Radioamnion project. The key features are:
 - transforming the audio file to a LED visualisation
