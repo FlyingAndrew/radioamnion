@@ -1,7 +1,10 @@
 ## radioamnion
 Webpage: http://radioamnion.net
+GitHub-Page: https://flyingandrew.github.io/radioamnion/
 
-STRAWb is a python module which simplifies and streamlines the work with the STRAWb data.
+Radioamnion is a python module which simplifies and streamlines for the Radioamnion project. The key features are:
+- transforming the audio file to a LED visualisation
+- storing the visualisation in multiple formats
 
 #### Table of Contents
 1. [Example](#example)
