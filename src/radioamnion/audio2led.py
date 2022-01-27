@@ -36,7 +36,9 @@ class Audio2LED(AudioFileHandler):
     def _set_fps_(self, min_fps):
         """Set the chunk size from fps, frames per second."""
         chunk_size = int(2 ** np.floor(np.log2(self.sample_rate / min_fps)))
-        self._cal_data_chunked_(chunk_size)  # cal self.chunks, .chunk_size, .data_chunked
+        self._cal_data_chunked_(
+            chunk_size
+        )  # cal self.chunks, .chunk_size, .data_chunked
 
     @property
     def fps(self):
@@ -51,26 +53,41 @@ class Audio2LED(AudioFileHandler):
         self.chunk_size = int(chunk_size)  # chunk_size has to be int
 
         # modulo of array <-> cut the rest of the sound that the length is n*chunk_size
-        max_n_chunk_size = int(np.floor(self.data.shape[-1] / self.chunk_size) * self.chunk_size)
+        max_n_chunk_size = int(
+            np.floor(self.data.shape[-1] / self.chunk_size) * self.chunk_size
+        )
 
-        self.data_chunked = self.data[:, :max_n_chunk_size].reshape(self.data.shape[0], -1, int(self.chunk_size))
-        self.time_chunked = self.time[:max_n_chunk_size].reshape(-1, int(self.chunk_size))
+        self.data_chunked = self.data[:, :max_n_chunk_size].reshape(
+            self.data.shape[0], -1, int(self.chunk_size)
+        )
+        self.time_chunked = self.time[:max_n_chunk_size].reshape(
+            -1, int(self.chunk_size)
+        )
 
-    def _cal_fft_(self, ):
+    def _cal_fft_(
+        self,
+    ):
         """Calculate the fft for the chunks. Chunks have to be set in advance."""
         # filter to 'subtract' baseline
         w = scipy.signal.blackman(self.chunk_size).reshape(1, -1)
 
         self.f_data = scipy.fft.rfft(self.data_chunked * w, axis=-1)
-        self.frequency_arr = scipy.fft.rfftfreq(self.chunk_size, 1. / self.sample_rate)
+        self.frequency_arr = scipy.fft.rfftfreq(self.chunk_size, 1.0 / self.sample_rate)
 
     def _fft_(self, min_fps=15):
         """Sets up the chunks and calculate the fft."""
         self._set_fps_(min_fps)
         self._cal_fft_()
 
-    def cal_led_levels(self, min_fps=15, num_index=4, min_frequency=40, max_frequency=5e3, index_log=True,
-                       alpha_log=True):
+    def cal_led_levels(
+        self,
+        min_fps=15,
+        num_index=4,
+        min_frequency=40,
+        max_frequency=5e3,
+        index_log=True,
+        alpha_log=True,
+    ):
         """
         The frequencies are bundled in chunks with a log-scale width and position. The amplitudes of this chunks are
         summed up. The displayed frequency if the middle frequency (linear) of the chunks.
@@ -104,18 +121,28 @@ class Audio2LED(AudioFileHandler):
 
         # cal. the index of the range -> 2d array: [[i_0, i_1],[i_1, i_2],...]
         if index_log:
-            frequency_boarder_index = np.geomspace(min_index, max_index, num_index + 1, dtype=int)
+            frequency_boarder_index = np.geomspace(
+                min_index, max_index, num_index + 1, dtype=int
+            )
         else:
-            frequency_boarder_index = np.linspace(min_index, max_index, num_index + 1, dtype=int)
+            frequency_boarder_index = np.linspace(
+                min_index, max_index, num_index + 1, dtype=int
+            )
         self.index_log = index_log
 
-        frequency_boarder_index[-1] = self.frequency_arr.shape[-1]  # set the upper limit to max
-        frequency_boarder_index = np.array([frequency_boarder_index[:-1], frequency_boarder_index[1:]]).T
+        frequency_boarder_index[-1] = self.frequency_arr.shape[
+            -1
+        ]  # set the upper limit to max
+        frequency_boarder_index = np.array(
+            [frequency_boarder_index[:-1], frequency_boarder_index[1:]]
+        ).T
 
         freq_channel_amp = []
         for i_min, i_max in frequency_boarder_index:
             # summed up the amplitude of a frequency bundle -> summed amplitude for the frequency selected_channel
-            freq_channel_amp.append(np.sum(np.abs(self.f_data[:, :, i_min:i_max]), axis=-1))
+            freq_channel_amp.append(
+                np.sum(np.abs(self.f_data[:, :, i_min:i_max]), axis=-1)
+            )
 
         # -> [audio selected_channel, frequency selected_channel, time]
         freq_channel_amp = np.swapaxes(freq_channel_amp, 0, 1)
@@ -160,10 +187,14 @@ class Audio2LED(AudioFileHandler):
         self.selected_channel = selected_channel
 
         if file_name is None:
-            file_name = self.file_name.replace(' ', '_').rsplit('.', 1)[0] + '.csv'
+            file_name = self.file_name.replace(" ", "_").rsplit(".", 1)[0] + ".csv"
 
-        csv_dict = {'time [ms]': (np.average(self.time_chunked, axis=-1) * 1000).astype(int)}
-        csv_dict.update({f'led_{i}': led_i for i, led_i in enumerate(self.led_channel_levels[2])})
+        csv_dict = {
+            "time [ms]": (np.average(self.time_chunked, axis=-1) * 1000).astype(int)
+        }
+        csv_dict.update(
+            {f"led_{i}": led_i for i, led_i in enumerate(self.led_channel_levels[2])}
+        )
         csv_data = pd.DataFrame(csv_dict)
         csv_data.to_csv(file_name, index=False)
 
