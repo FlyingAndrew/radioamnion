@@ -39,6 +39,12 @@ Radioamnion is an art project included in a scientific detector called STRAWb.
 - [2D visualization with color change](transmissions/watery_thoughts/watery_thoughts-2d-deep_r_multi.html)
 - [csv File](transmissions/watery_thoughts/watery_thoughts.csv)
 
+### PlasmaticaFantastica_RadioAmnion
+- [3D visualization](transmissions/PlasmaticaFantastica_RadioAmnion/PlasmaticaFantastica_RadioAmnion-3d-deep.html)
+- [2D visualization](transmissions/PlasmaticaFantastica_RadioAmnion/PlasmaticaFantastica_RadioAmnion-2d-deep_r.html)
+- [2D visualization with color change](transmissions/PlasmaticaFantastica_RadioAmnion/PlasmaticaFantastica_RadioAmnion-2d-deep_r_multi.html)
+- [csv File](transmissions/PlasmaticaFantastica_RadioAmnion/PlasmaticaFantastica_RadioAmnion.csv)
+- 
 #### Links
 - Webpage: [http://radioamnion.net](http://radioamnion.net)
 - GitHub-Page: [https://flyingandrew.github.io/radioamnion/](https://flyingandrew.github.io/radioamnion/)
