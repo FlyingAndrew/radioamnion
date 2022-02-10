@@ -5,6 +5,6 @@ Radioamnion is a python module which simplifies and streamlines for the Radioamn
 Change to the Master branch to see the code. This branch is for the GitHub-Page only.
 
 ## Links
-Webpage: http://radioamnion.net
-GitHub-Page: https://flyingandrew.github.io/radioamnion/
-GitHub-Repro: https://github.com/FlyingAndrew/radioamnion
+Webpage: http://radioamnion.net <br>
+GitHub-Page: https://flyingandrew.github.io/radioamnion/ <br>
+GitHub-Repro: https://github.com/FlyingAndrew/radioamnion <br>
