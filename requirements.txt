@@ -6,3 +6,5 @@ matplotlib~=3.4.2
 moviepy~=1.0.3
 tqdm~=4.61.2
 librosa~=0.8.1
+plotly~=5.7.0
+audioread~=2.1.9
