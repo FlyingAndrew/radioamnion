@@ -1,3 +1,4 @@
+#! /usr/bin/env python3
 # coding: utf-8
 
 """
@@ -24,7 +25,7 @@ import radioamnion
 
 def parser_args():
     parser = argparse.ArgumentParser(description='Transforms a audio file (wav or mp3) for the radioamnion')
-    parser.add_argument('-f', '--file', type=str, default=None,
+    parser.add_argument('file', metavar='FILE', type=str, nargs='*', default=[],
                         help="Path to the audio file")
 
     return parser.parse_args()
@@ -321,6 +322,10 @@ def main(file_name):
 if __name__ == "__main__":
     args = parser_args()
 
-    print(f'Process: {args.file}')
-    main(file_name=args.file)
-    print(f'Done')
+    if args.file == []:
+        print('No file defined.')
+    else:
+        for i in args.file:
+            print(f'Process: {i}')
+            main(file_name=i)
+        print(f'Done')
