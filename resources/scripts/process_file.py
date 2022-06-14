@@ -322,7 +322,7 @@ def main(file_name):
 if __name__ == "__main__":
     args = parser_args()
 
-    if args.file == []:
+    if not args.file:
         print('No file defined.')
     else:
         for i in args.file:
