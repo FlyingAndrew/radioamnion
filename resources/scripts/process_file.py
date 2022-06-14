@@ -57,10 +57,10 @@ def create_plots(audio_led, ):
     y_conv = np.convolve(yy[:, 0], np.ones(steps_y) / steps_y, mode='valid')
     y_conv = (y_conv * 1000.).astype('datetime64[ms]')
 
-    # TODO: why the following lines
-    i = 50
-    width = 16 * i
-    height = 9 * i
+    # Make layout in 16:9 ratio
+    scale = 50
+    width = 16 * scale
+    height = 9 * scale
 
     # Create the first plot
     print('Create first Plot')
