@@ -13,7 +13,7 @@ setuptools.setup(
     description='The radioamnion python package',
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/FlyingAndrew/radioamnion",
+    url="https://github.com/kholzapfel/radioamnion",
     # project_urls={
     #     "Bug Tracker": "https://github.com/pypa/sampleproject/issues",
     # },

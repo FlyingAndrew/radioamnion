@@ -6,8 +6,8 @@ Radioamnion is a python module which simplifies and streamlines for the Radioamn
 
 #### Links
 - Project Webpage: http://radioamnion.net
-- GitHub-Page: https://flyingandrew.github.io/radioamnion/
-- GitHub-Repro: https://github.com/FlyingAndrew/radioamnion
+- GitHub-Page: https://kholzapfel.github.io/radioamnion/
+- GitHub-Repro: https://github.com/kholzapfel/radioamnion
 
 #### Table of Contents
 1. [Example](#example)
