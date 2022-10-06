@@ -1,3 +1,5 @@
+import os.path
+
 import numpy as np
 import scipy.signal
 import scipy.fft
@@ -177,7 +179,7 @@ class Audio2LED(AudioFileHandler):
         self.led_channel_levels = led_channel_levels
         self.freq_channel_amp_norm = freq_channel_amp_norm
 
-    def save_to_csv(self, file_name=None, selected_channel=2):
+    def save_to_csv(self, file_name=None, file_dir=None, selected_channel=2):
         """Create the file for the LEDs.
         PARAMETER
         ---------
@@ -188,6 +190,9 @@ class Audio2LED(AudioFileHandler):
 
         if file_name is None:
             file_name = self.file_name.replace(" ", "_").rsplit(".", 1)[0] + ".csv"
+
+        if file_dir is not None:
+            file_name = os.path.join(file_dir, os.path.basename(file_name))
 
         csv_dict = {
             "time [ms]": (np.average(self.time_chunked, axis=-1) * 1000).astype(int)

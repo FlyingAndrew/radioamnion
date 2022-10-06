@@ -31,8 +31,14 @@ def parser_args():
     return parser.parse_args()
 
 
-def create_plots(audio_led, ):
+def create_plots(audio_led, file_dir=None):
     """Creates the plots. Its a bit ugly and should be rewritten."""
+
+    file_name = os.path.basename(audio_led.file_name).rsplit(".", 1)[0]
+    if file_dir is None:
+        file_dir = os.path.join(os.path.dirname(audio_led.file_name), file_name)
+        if not os.path.exists(file_dir):
+            os.makedirs(file_dir)
 
     # Create the colorscale for plotly
     c_name = ['Viridis_r', 'Viridis', 'Blues', 'Speed', 'Speed_r', 'Tempo', 'Tempo_r', 'Deep', 'Deep_r'][-2]
@@ -102,10 +108,7 @@ def create_plots(audio_led, ):
                       margin=dict(l=0, r=0, b=0, t=0, pad=0),
                       )
 
-    file_name = os.path.basename(audio_led.file_name).rsplit(".", 1)[0]
-    file_dir = os.path.join(os.path.dirname(audio_led.file_name), file_name)
-    if not os.path.exists(file_dir):
-        os.makedirs(file_dir)
+    # next plot
     file_name_plot = os.path.join(file_dir, f'{file_name}-3d-{color_mod.cscale.lower()}')
 
     fig.update_layout(scene_camera=dict(up=dict(x=0, y=0, z=1),
@@ -180,10 +183,6 @@ def create_plots(audio_led, ):
                       margin=dict(l=0, r=0, b=0, t=0, pad=0),
                       )
 
-    file_name = os.path.basename(audio_led.file_name).rsplit(".", 1)[0]
-    file_dir = os.path.join(os.path.dirname(audio_led.file_name), file_name)
-    if not os.path.exists(file_dir):
-        os.makedirs(file_dir)
     file_name_plot = os.path.join(file_dir, f'{file_name}-2d-{color_mod.cscale.lower()}')
 
     fig.write_image(f'{file_name_plot}.pdf', format='pdf', scale=10)
@@ -312,7 +311,14 @@ def create_plots(audio_led, ):
 def main(file_name):
     audio_led = radioamnion.Audio2LED(file_name)
     print(f'Resulting fps: {audio_led.fps:.2f} frames/s')
-    audio_led.save_to_csv()
+
+    file_name = os.path.basename(audio_led.file_name).rsplit(".", 1)[0]
+    file_dir = os.path.join(os.path.dirname(file_name), file_name)
+    if not os.path.exists(file_dir):
+        os.makedirs(file_dir)
+
+    print('Save csv file')
+    audio_led.save_to_csv(file_dir=file_dir)
 
     print('Create Plots')
     create_plots(audio_led)
