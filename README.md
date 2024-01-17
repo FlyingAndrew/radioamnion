@@ -8,8 +8,7 @@ Radioamnion is a python module which simplifies and streamlines for the Radioamn
 2. [Project](#project)
 3. [Example](#example)
 4. [Installation](#installation)
-5. [Code Structure](#code-structure)
-6. [ToDo-List](#todo-list)
+5. [Crontab Settings](#crontab-settings)
 
 Radioamnion is a python module which simplifies and streamlines for the Radioamnion project. The key features are:
 - transforming the audio file to a LED visualisation
@@ -51,7 +50,7 @@ Run the following command to install the package. In case you are not in the dir
 pip3 install -U --user -e .
 ```
 
-# Crontab
+## Crontab Settings
 For c&p to:
 ```
 37 11 24 7 * /home/odroid/mctl/mctl/mctl_client.py module art START /home/odroid/art/---.csv 2>&1 >> /home/odroid/logs/cron_art.log
