@@ -1,22 +1,29 @@
 # Radioamnion
+Radioamnion is a python module which simplifies and streamlines for the Radioamnion project. The key features are:
+- transforming the audio file to a LED visualisation
+- storing the visualisation in multiple formats
+
+## Table of Contents
+1. [Links](#links)
+2. [Project](#project)
+3. [Example](#example)
+4. [Installation](#installation)
+5. [Code Structure](#code-structure)
+6. [ToDo-List](#todo-list)
 
 Radioamnion is a python module which simplifies and streamlines for the Radioamnion project. The key features are:
 - transforming the audio file to a LED visualisation
 - storing the visualisation in multiple formats
 
-#### Links
+## Links
 - Project Webpage: http://radioamnion.net
 - GitHub-Page: https://kholzapfel.github.io/radioamnion/
 - GitHub-Repro: https://github.com/kholzapfel/radioamnion
 
-#### Table of Contents
-1. [Example](#example)
-2. [Installation](#installation)
-3. [Code Structure](#code-structure)
-4. [ToDo-List](#todo-list)
+## Project
+RADIO AMNION: SONIC TRANSMISSIONS OF CARE IN OCEANIC SPACE is a multi-year sound art project for the waters of Earth, commissioning and relaying new compositions by contemporary artists more than 2kms deep with/in the Pacific Ocean. During each full moon, far beyond human perception, the abyssal waters of Cascadia Basin resonate with the deep frequencies and voices of invited artists. All transmissions are relayed in the sea through a submerged neutrino telescope experiment’s calibration system and available here online only during the three days of each full moon.
 
 ## Example
-
 ```python
 import radioamnion
 
@@ -43,12 +50,6 @@ Run the following command to install the package. In case you are not in the dir
 ```bash
 pip3 install -U --user -e .
 ```
-
-## Code Structure
-
-## TODO List:
-* [ ] add examples
-* [ ] README
 
 # Crontab
 For c&p to:
